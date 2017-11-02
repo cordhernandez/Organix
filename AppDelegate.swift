@@ -6,6 +6,7 @@
 //  Copyright © 2017 Cordero Hernandez. All rights reserved.
 //
 
+import Archeota
 import UIKit
 
 @UIApplicationMain
@@ -16,6 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        LOG.enable()
+        LOG.level = .debug
+        
         return true
     }
 
