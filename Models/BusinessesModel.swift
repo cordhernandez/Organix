@@ -9,14 +9,14 @@
 import Archeota
 import Foundation
 
-struct Businesses {
+struct Businesses: Decodable {
     
     let rating: Int
     let price: String
     let phone: String
     let id: String
     let isClosed: Bool
-    let categories: Categories
+    let categories: [Categories]
     let reviewCount: Int
     let name: String
     let url: String
@@ -24,7 +24,7 @@ struct Businesses {
     let imageURL: String
     let location: Location
     let distance: Double
-    let transactions: String
+    let transactions: [String]
     
     func getBusinessesJsonData(from dictionary: NSDictionary) -> Businesses? {
         
@@ -79,7 +79,7 @@ extension Businesses {
         self.phone = phone
         self.id = id
         self.isClosed = isClosed
-        self.categories = categories
+        self.categories = [categories]
         self.reviewCount = reviewCount
         self.name = name
         self.url = url
@@ -87,11 +87,11 @@ extension Businesses {
         self.imageURL = imageURL
         self.location = location
         self.distance = distance
-        self.transactions = transactions
+        self.transactions = [transactions]
     }
 }
 
-struct Categories {
+struct Categories: Decodable {
     
     let alias: String
     let title: String
@@ -114,7 +114,7 @@ extension Categories {
     }
 }
 
-struct Coordinates {
+struct Coordinates: Decodable {
     
     let latitude: Double
     let longitude: Double
@@ -137,7 +137,7 @@ extension Coordinates {
     }
 }
 
-struct Location {
+struct Location: Decodable {
     
     let city: String
     let country: String
