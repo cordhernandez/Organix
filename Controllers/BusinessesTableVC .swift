@@ -14,7 +14,7 @@ import UIKit
 class BusinessesTableVC: UITableViewController {
 
     var businesses: [Businesses] = []
-    
+
     let main = OperationQueue.main
     let async: OperationQueue = {
        
@@ -28,6 +28,7 @@ class BusinessesTableVC: UITableViewController {
         super.viewDidLoad()
         
         loadBusinesses()
+        setupRefreshControl()
     }
 }
 
@@ -61,7 +62,7 @@ extension BusinessesTableVC {
         cell.businessRating.text = String(business.rating)
         cell.businessPhoneNumber.text = business.phone
 //        cell.businessDistance.text = String(business.distance)
-        cell.businessDistance.text = String(business.isClosed ? "Closed" : "Open")
+        cell.businessDistance.text = business.isClosed ? "Closed" : "Open"
         
         return cell
     }
@@ -82,7 +83,17 @@ extension BusinessesTableVC {
 //MARK: - Load Data
 extension BusinessesTableVC {
     
-    func loadBusinesses() {
+    func setupRefreshControl() {
+        
+        refreshControl = UIRefreshControl()
+        refreshControl?.backgroundColor = UIColor.black
+        refreshControl?.tintColor = UIColor.white
+        
+        refreshControl?.addTarget(self, action: #selector(self.loadBusinesses), for: .valueChanged)
+        
+    }
+    
+    @objc func loadBusinesses() {
         
         SearchBusinesses.searchForBusinessesByCity(withCity: "LosAngeles", callback: self.populateBusinesses)
     }
@@ -94,6 +105,7 @@ extension BusinessesTableVC {
         self.main.addOperation {
             
             self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
         }
     }
     
