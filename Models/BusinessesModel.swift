@@ -9,24 +9,24 @@
 import Archeota
 import Foundation
 
-struct Businesses: Decodable {
+struct Businesses {
     
-    let rating: Int
+    let rating: Double 
     let price: String
     let phone: String
     let id: String
     let isClosed: Bool
-    let categories: [Categories]
+//    let categories: [Categories]
     let reviewCount: Int
     let name: String
     let url: String
     let coordinates: Coordinates
-    let imageURL: String
+    let imageURL: URL
     let location: Location
     let distance: Double
-    let transactions: [String]
+//    let transactions: [String]
     
-    func getBusinessesJsonData(from dictionary: NSDictionary) -> Businesses? {
+    static func getBusinessesJsonData(from dictionary: NSDictionary) -> Businesses? {
         
         return Businesses(from: dictionary)
     }
@@ -36,32 +36,33 @@ extension Businesses {
     
     init?(from businessesDictionary: NSDictionary) {
         
-        guard let rating = businessesDictionary["rating"] as? Int,
+        guard let rating = businessesDictionary["rating"] as? Double,
             let price = businessesDictionary["price"] as? String,
             let phone = businessesDictionary["phone"] as? String,
             let id = businessesDictionary["id"] as? String,
             let isClosed = businessesDictionary["is_closed"] as? Bool,
-            let categoriesJSON = businessesDictionary["categories"] as? NSDictionary,
+//            let categoriesJSON = businessesDictionary["categories"] as? NSDictionary,
             let reviewCount = businessesDictionary["review_count"] as? Int,
             let name = businessesDictionary["name"] as? String,
             let url = businessesDictionary["url"] as? String,
             let coordinatesJSON = businessesDictionary["coordinates"] as? NSDictionary,
-            let imageURL = businessesDictionary["image_url"] as? String,
+            let imageStringURL = businessesDictionary["image_url"] as? String,
+            let imageURL = URL(string: imageStringURL),
             let locationJSON = businessesDictionary["location"] as? NSDictionary,
-            let distance = businessesDictionary["distance"] as? Double,
-            let transactions = businessesDictionary["transactions"] as? String
+            let distance = businessesDictionary["distance"] as? Double
+//            let transactions = businessesDictionary["transactions"] as? String
             else {
                 
                 LOG.error("Failed to parse JSON from businessesDictionary: \(businessesDictionary)")
                 return nil
         }
-        
+        /*
         guard let categories = Categories(from: categoriesJSON) else {
             
             LOG.error("Failed to parse JSON from Categories: \(categoriesJSON)")
             return nil
         }
-        
+        */
         guard let coordinates = Coordinates(from: coordinatesJSON) else {
             
             LOG.error("Failed to parse JSON from Coordinates: \(coordinatesJSON)")
@@ -79,7 +80,7 @@ extension Businesses {
         self.phone = phone
         self.id = id
         self.isClosed = isClosed
-        self.categories = [categories]
+//        self.categories = [categories]
         self.reviewCount = reviewCount
         self.name = name
         self.url = url
@@ -87,11 +88,11 @@ extension Businesses {
         self.imageURL = imageURL
         self.location = location
         self.distance = distance
-        self.transactions = [transactions]
+//        self.transactions = [transactions]
     }
 }
 
-struct Categories: Decodable {
+struct Categories {
     
     let alias: String
     let title: String
@@ -114,7 +115,7 @@ extension Categories {
     }
 }
 
-struct Coordinates: Decodable {
+struct Coordinates {
     
     let latitude: Double
     let longitude: Double
@@ -137,12 +138,10 @@ extension Coordinates {
     }
 }
 
-struct Location: Decodable {
+struct Location {
     
     let city: String
     let country: String
-    let address2: String
-    let address3: String
     let state: String
     let address1: String
     let zipCode: String
@@ -154,8 +153,6 @@ extension Location {
         
         guard let city = locationDictionary["city"] as? String,
             let country = locationDictionary["country"] as? String,
-            let address2 = locationDictionary["address2"] as? String,
-            let address3 = locationDictionary["address3"] as? String,
             let state = locationDictionary["state"] as? String,
             let address1 = locationDictionary["address1"] as? String,
             let zipCode = locationDictionary["zip_code"] as? String
@@ -167,8 +164,6 @@ extension Location {
         
         self.city = city
         self.country = country
-        self.address2 = address2
-        self.address3 = address3
         self.state = state
         self.address1 = address1
         self.zipCode = zipCode
