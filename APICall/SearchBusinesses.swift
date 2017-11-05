@@ -40,7 +40,7 @@ class SearchBusinesses {
     
     static func searchForBusinessesByCity(withCity city: String, callback: @escaping Callback) {
         
-        let businessesAPI = "https://api.yelp.com/v3/businesses/search?term=VeganFood%26VegetarianFood&location=\(city)"
+        let businessesAPI = "https://api.yelp.com/v3/businesses/search?term=Vegan&location=\(city)"
         
         guard let url = URL(string: businessesAPI) else {
             callback([])
@@ -127,10 +127,27 @@ class SearchBusinesses {
     
     private static func parseStores(from data: Data) -> [Businesses] {
         
-        guard let businessesArray = try? JSONDecoder().decode([Businesses].self, from: data) else {
+        var businessesArray: [Businesses] = []
+        
+        guard let jsonObject = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary else {
+            return businessesArray
+        }
+        
+        guard let jsonArray = jsonObject?["businesses"] as? NSArray else {
+            return businessesArray
+        }
+        
+        for element in jsonArray {
             
-            LOG.error("Failed to parse JSON from businesses array")
-            return []
+            guard let object = element as? NSDictionary else {
+                continue
+            }
+            
+            guard let businesses = Businesses.getBusinessesJsonData(from: object) else {
+                continue
+            }
+            
+            businessesArray.append(businesses)
         }
         
         return businessesArray
