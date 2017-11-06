@@ -16,7 +16,7 @@ struct Businesses {
     let phone: String
     let id: String
     let isClosed: Bool
-//    let categories: [Categories]
+    var categories: [Categories] = []
     let reviewCount: Int
     let name: String
     let url: String
@@ -24,7 +24,7 @@ struct Businesses {
     let imageURL: URL
     let location: Location
     let distance: Double
-//    let transactions: [String]
+//    var transactions: [String] = []
     
     static func getBusinessesJsonData(from dictionary: NSDictionary) -> Businesses? {
         
@@ -41,7 +41,7 @@ extension Businesses {
             let phone = businessesDictionary["phone"] as? String,
             let id = businessesDictionary["id"] as? String,
             let isClosed = businessesDictionary["is_closed"] as? Bool,
-//            let categoriesJSON = businessesDictionary["categories"] as? NSDictionary,
+            let categoriesJSON = businessesDictionary["categories"] as? [NSDictionary],
             let reviewCount = businessesDictionary["review_count"] as? Int,
             let name = businessesDictionary["name"] as? String,
             let url = businessesDictionary["url"] as? String,
@@ -56,13 +56,19 @@ extension Businesses {
                 LOG.error("Failed to parse JSON from businessesDictionary: \(businessesDictionary)")
                 return nil
         }
-        /*
-        guard let categories = Categories(from: categoriesJSON) else {
+        
+//        for transaction in businessesDictionary["transactions"] as? [[String : Any]] ?? [[:]] {
+//
+//            let businessTransaction =
+//            transactions.append(transaction)
+//        }
+        
+        for category in categoriesJSON {
             
-            LOG.error("Failed to parse JSON from Categories: \(categoriesJSON)")
-            return nil
+            let businessCategory = Categories(alias: category["alias"] as? String ?? "", title: category["title"] as? String ?? "")
+            categories.append(businessCategory)
         }
-        */
+        
         guard let coordinates = Coordinates(from: coordinatesJSON) else {
             
             LOG.error("Failed to parse JSON from Coordinates: \(coordinatesJSON)")
@@ -80,7 +86,6 @@ extension Businesses {
         self.phone = phone
         self.id = id
         self.isClosed = isClosed
-//        self.categories = [categories]
         self.reviewCount = reviewCount
         self.name = name
         self.url = url
@@ -88,7 +93,6 @@ extension Businesses {
         self.imageURL = imageURL
         self.location = location
         self.distance = distance
-//        self.transactions = [transactions]
     }
 }
 
@@ -96,23 +100,6 @@ struct Categories {
     
     let alias: String
     let title: String
-}
-
-extension Categories {
-    
-    init?(from categoriesDictionary: NSDictionary) {
-        
-        guard let alias = categoriesDictionary["alias"] as? String,
-            let title = categoriesDictionary["title"] as? String
-            else {
-                
-                LOG.error("Failed to parse JSON from categories dictionary: \(categoriesDictionary)")
-                return nil
-        }
-        
-        self.alias = alias
-        self.title = title
-    }
 }
 
 struct Coordinates {
