@@ -11,7 +11,7 @@ import CoreLocation
 import Kingfisher
 import UIKit
 
-class BusinessesTableVC: UITableViewController {
+class BusinessesTableViewController: UITableViewController {
 
     var businesses: [Businesses] = []
 
@@ -33,7 +33,7 @@ class BusinessesTableVC: UITableViewController {
 }
 
 //MARK: - Table View DataSource
-extension BusinessesTableVC {
+extension BusinessesTableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -61,15 +61,16 @@ extension BusinessesTableVC {
         cell.businessPrice.text = business.price
         cell.businessRating.text = String(business.rating)
         cell.businessPhoneNumber.text = business.phone
-//        cell.businessDistance.text = String(business.distance)
         cell.businessDistance.text = business.isClosed ? "Closed" : "Open"
+        
+        
         
         return cell
     }
 }
 
 //MARK: - Table View Delegate
-extension BusinessesTableVC {
+extension BusinessesTableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
@@ -81,7 +82,7 @@ extension BusinessesTableVC {
 }
 
 //MARK: - Load Data
-extension BusinessesTableVC {
+extension BusinessesTableViewController {
     
     func setupRefreshControl() {
         
