@@ -15,10 +15,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Businesses TableVC-->
+        <!--Businesses Table View Controller-->
         <scene sceneID="3IU-Ox-jpN">
             <objects>
-                <tableViewController id="TdX-Ij-wGa" customClass="BusinessesTableVC" customModule="Organix" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="TdX-Ij-wGa" customClass="BusinessesTableViewController" customModule="Organix" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="3EV-gG-UR0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,46 +31,51 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="189.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EUJ-DI-MME">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EUJ-DI-MME">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="189.5"/>
                                         </imageView>
                                         <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uou-5B-pdF">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rating" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J7i-2Z-ntG">
-                                                    <rect key="frame" x="280" y="151" width="87" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J7i-2Z-ntG">
+                                                    <rect key="frame" x="310" y="153" width="53" height="25"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPz-Uc-OEb">
-                                                    <rect key="frame" x="280" y="8" width="87" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPz-Uc-OEb">
+                                                    <rect key="frame" x="291" y="12" width="72" height="25"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJ5-1P-v9a">
-                                                    <rect key="frame" x="8" y="8" width="134" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJ5-1P-v9a">
+                                                    <rect key="frame" x="12" y="12" width="126.5" height="25"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAY-V4-dL0">
-                                                    <rect key="frame" x="8" y="151" width="87" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAY-V4-dL0">
+                                                    <rect key="frame" x="12" y="153" width="40.5" height="25"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="fPz-Uc-OEb" secondAttribute="trailing" constant="12" id="5tm-Kq-r6e"/>
+                                                <constraint firstItem="fPz-Uc-OEb" firstAttribute="top" secondItem="uou-5B-pdF" secondAttribute="top" constant="12" id="6g3-am-x0r"/>
+                                                <constraint firstAttribute="trailing" secondItem="J7i-2Z-ntG" secondAttribute="trailing" constant="12" id="L9c-C6-DGk"/>
+                                                <constraint firstItem="TAY-V4-dL0" firstAttribute="leading" secondItem="uou-5B-pdF" secondAttribute="leading" constant="12" id="N0a-v9-9Tb"/>
+                                                <constraint firstAttribute="bottom" secondItem="J7i-2Z-ntG" secondAttribute="bottom" constant="12" id="N8t-4M-q2Z"/>
+                                                <constraint firstAttribute="bottom" secondItem="TAY-V4-dL0" secondAttribute="bottom" constant="12" id="ZoO-hX-VUe"/>
+                                                <constraint firstItem="zJ5-1P-v9a" firstAttribute="top" secondItem="uou-5B-pdF" secondAttribute="top" constant="12" id="lzA-nh-VRh"/>
+                                                <constraint firstItem="zJ5-1P-v9a" firstAttribute="leading" secondItem="uou-5B-pdF" secondAttribute="leading" constant="12" id="rXc-7U-uqT"/>
+                                            </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Store Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W00-Au-6EX">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Store Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W00-Au-6EX">
                                             <rect key="frame" x="8" y="63" width="359" height="62"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="22"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -87,6 +92,10 @@
                                         <constraint firstAttribute="trailing" secondItem="uou-5B-pdF" secondAttribute="trailing" id="v6e-Ra-Oc9"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstItem="W00-Au-6EX" firstAttribute="centerX" secondItem="jQv-xX-Rzr" secondAttribute="centerX" id="NhY-ch-yf8"/>
+                                    <constraint firstItem="W00-Au-6EX" firstAttribute="centerY" secondItem="jQv-xX-Rzr" secondAttribute="centerY" constant="-1" id="siz-IF-bh2"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="businessDistance" destination="fPz-Uc-OEb" id="ryV-hv-Qus"/>
                                     <outlet property="businessImage" destination="EUJ-DI-MME" id="zXr-ba-b39"/>
