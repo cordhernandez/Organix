@@ -12,12 +12,14 @@ import Kingfisher
 import UIKit
 
 class BusinessesTableViewController: UITableViewController {
-
+    
+    var filteredBusinesses: [Businesses] = []
     var businesses: [Businesses] = []
-
+    var searchController: UISearchController = UISearchController(searchResultsController: nil)
+    
     let main = OperationQueue.main
     let async: OperationQueue = {
-       
+        
         let operationQueue = OperationQueue()
         operationQueue.maxConcurrentOperationCount = 3
         
@@ -29,6 +31,7 @@ class BusinessesTableViewController: UITableViewController {
         
         loadBusinesses()
         setupRefreshControl()
+        setupSearchBar()
     }
 }
 
@@ -42,7 +45,14 @@ extension BusinessesTableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return businesses.count
+        if isFiltering() {
+            
+            return filteredBusinesses.count
+        }
+        else {
+            
+            return businesses.count
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -54,7 +64,14 @@ extension BusinessesTableViewController {
         }
         
         let row = indexPath.row
-        let business = businesses[row]
+        let business: Businesses
+        
+        if isFiltering() {
+            business = filteredBusinesses[row]
+        }
+        else {
+            business = businesses[row]
+        }
         
         goLoadImage(into: cell, withBusiness: business.imageURL)
         cell.businessName.text = business.name
@@ -62,8 +79,6 @@ extension BusinessesTableViewController {
         cell.businessRating.text = String(business.rating)
         cell.businessPhoneNumber.text = business.phone
         cell.businessDistance.text = business.isClosed ? "Closed" : "Open"
-        
-        
         
         return cell
     }
@@ -78,7 +93,46 @@ extension BusinessesTableViewController {
         
         return rowHeight
     }
+    
+}
 
+//MARK - Search
+extension BusinessesTableViewController: UISearchResultsUpdating {
+    
+    func isFiltering() -> Bool {
+        
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func setupSearchBar() {
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.searchBar.placeholder = "Enter City or Zip Code"
+        
+        definesPresentationContext = false
+        tableView.tableHeaderView = searchController.searchBar
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        if searchController.searchBar.text == "" {
+            filteredBusinesses = businesses
+        }
+        else {
+            
+            guard let modifiedText = searchController.searchBar.text?.replacingOccurrences(of: " ", with: "") else { return }
+            print("THIS IS THE MODIFIED TEXT: \(modifiedText)")
+            loadBusinessesFrom(theCity: modifiedText)
+        }
+        
+        tableView.reloadData()
+    }
 }
 
 //MARK: - Load Data
@@ -92,6 +146,11 @@ extension BusinessesTableViewController {
         
         refreshControl?.addTarget(self, action: #selector(self.loadBusinesses), for: .valueChanged)
         
+    }
+    
+    func loadBusinessesFrom(theCity city: String) {
+        
+        SearchBusinesses.searchForBusinessesByCity(withCity: city, callback: self.populateBusinesses)
     }
     
     @objc func loadBusinesses() {
@@ -118,6 +177,5 @@ extension BusinessesTableViewController {
         
         cell.businessImage.kf.setImage(with: url, placeholder: nil, options: options, progressBlock: nil, completionHandler: nil)
     }
-    
 }
 
