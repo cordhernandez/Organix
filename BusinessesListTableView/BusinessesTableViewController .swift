@@ -57,14 +57,14 @@ extension BusinessesTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell: BusinessesTableViewCell = tableView.dequeueReusableCell(withIdentifier: CellKeys.businessesCellKey, for: indexPath) as? BusinessesTableViewCell else {
+        guard let cell: BusinessesTableViewCell = tableView.dequeueReusableCell(withIdentifier: CellKeys.businesses, for: indexPath) as? BusinessesTableViewCell else {
             
             LOG.error("Failed to dequeue cell for Businesses Table View Controller")
             return UITableViewCell()
         }
         
         let row = indexPath.row
-        let business: Businesses
+        var business: Businesses
         
         if isFiltering() {
             business = filteredBusinesses[row]
@@ -131,7 +131,10 @@ extension BusinessesTableViewController: UISearchResultsUpdating {
             loadBusinessesFrom(theCity: modifiedText)
         }
         
-        tableView.reloadData()
+        self.main.addOperation {
+            
+            self.tableView.reloadData()
+        }
     }
 }
 
@@ -150,11 +153,13 @@ extension BusinessesTableViewController {
     
     func loadBusinessesFrom(theCity city: String) {
         
+        startSpinningIndicator()
         SearchBusinesses.searchForBusinessesByCity(withCity: city, callback: self.populateBusinesses)
     }
     
     @objc func loadBusinesses() {
         
+        startSpinningIndicator()
         SearchBusinesses.searchForBusinessesByCity(withCity: "LosAngeles", callback: self.populateBusinesses)
     }
     
@@ -166,6 +171,11 @@ extension BusinessesTableViewController {
             
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
+            self.stopSpinningIndicator()
+        }
+        
+        if self.businesses.isEmpty {
+            //Make note that businesses are empty
         }
     }
     
@@ -178,4 +188,58 @@ extension BusinessesTableViewController {
         cell.businessImage.kf.setImage(with: url, placeholder: nil, options: options, progressBlock: nil, completionHandler: nil)
     }
 }
+
+//MARK: Segues
+extension BusinessesTableViewController {
+    
+    @IBAction func didTapMapButton(_ sender: Any) {
+        
+        goToMapView()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let destination = segue.destination as? UINavigationController {
+            
+            let businessesMapViewController = destination.topViewController as? BusinessesMapViewController
+            businessesMapViewController?.businesses = self.businesses
+        }
+    }
+    
+    func goToMapView() {
+        
+        performSegue(withIdentifier: SegueKeys.mapView, sender: nil)
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
