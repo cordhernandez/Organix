@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jej-K7-kp4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jej-K7-kp4">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -111,11 +112,59 @@
                             <outlet property="delegate" destination="TdX-Ij-wGa" id="od1-r0-LbV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Fmp-po-HgN"/>
+                    <navigationItem key="navigationItem" id="Fmp-po-HgN">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="SNw-FF-hdo">
+                            <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="didTapMapButton:" destination="TdX-Ij-wGa" id="dNl-2S-mfB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="gnR-AD-gJj" kind="presentation" identifier="mapViewSegue" id="YWY-cv-30a"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NOP-FP-kgF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="304.80000000000001" y="157.87106446776613"/>
+        </scene>
+        <!--Businesses Map View Controller-->
+        <scene sceneID="8tu-Hc-oGD">
+            <objects>
+                <viewController id="4mL-ac-PGW" customClass="BusinessesMapViewController" customModule="Organix" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dPa-qe-gxH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="W2p-5Z-qM5">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="W2p-5Z-qM5" firstAttribute="bottom" secondItem="7Nl-l7-b1z" secondAttribute="bottom" id="7Ey-H5-bTb"/>
+                            <constraint firstItem="W2p-5Z-qM5" firstAttribute="top" secondItem="7Nl-l7-b1z" secondAttribute="top" id="DAI-8o-36G"/>
+                            <constraint firstItem="W2p-5Z-qM5" firstAttribute="centerX" secondItem="7Nl-l7-b1z" secondAttribute="centerX" id="MKy-SS-YTH"/>
+                            <constraint firstItem="W2p-5Z-qM5" firstAttribute="width" secondItem="dPa-qe-gxH" secondAttribute="width" id="XQL-em-F3e"/>
+                            <constraint firstItem="W2p-5Z-qM5" firstAttribute="centerY" secondItem="7Nl-l7-b1z" secondAttribute="centerY" id="qh7-Ly-oQX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7Nl-l7-b1z"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="tBn-0H-HYO">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="y3Q-EM-79Q">
+                            <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="didTapDismissButton:" destination="4mL-ac-PGW" id="sQ7-84-4bP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="W2p-5Z-qM5" id="1q0-ga-E5a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dw6-FE-yNV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2088.8000000000002" y="157.87106446776613"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mV3-ep-JtC">
@@ -125,7 +174,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mDv-rI-mhv">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.8980392157" green="0.98431372549999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -135,6 +184,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z7Q-Q6-1PN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-561" y="158"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="C3f-KF-6au">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gnR-AD-gJj" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="atG-Rd-V5m">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.14338690042495728" green="0.14352902770042419" blue="0.14340889453887939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4mL-ac-PGW" kind="relationship" relationship="rootViewController" id="rNq-07-pAX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QHi-eF-N9d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1164" y="158"/>
         </scene>
     </scenes>
 </document>
