@@ -8,6 +8,7 @@
 
 import Archeota
 import Foundation
+import CoreLocation
 
 struct Businesses {
     
@@ -24,7 +25,7 @@ struct Businesses {
     let imageURL: URL
     let location: Location
     let distance: Double
-//    var transactions: [String] = []
+    let transactions: [String]
     
     static func getBusinessesJsonData(from dictionary: NSDictionary) -> Businesses? {
         
@@ -49,19 +50,13 @@ extension Businesses {
             let imageStringURL = businessesDictionary["image_url"] as? String,
             let imageURL = URL(string: imageStringURL),
             let locationJSON = businessesDictionary["location"] as? NSDictionary,
-            let distance = businessesDictionary["distance"] as? Double
-//            let transactions = businessesDictionary["transactions"] as? String
+            let distance = businessesDictionary["distance"] as? Double,
+            let transactions = businessesDictionary["transactions"] as? [String]
             else {
                 
                 LOG.error("Failed to parse JSON from businessesDictionary: \(businessesDictionary)")
                 return nil
         }
-        
-//        for transaction in businessesDictionary["transactions"] as? [[String : Any]] ?? [[:]] {
-//
-//            let businessTransaction =
-//            transactions.append(transaction)
-//        }
         
         for category in categoriesJSON {
             
@@ -93,6 +88,7 @@ extension Businesses {
         self.imageURL = imageURL
         self.location = location
         self.distance = distance
+        self.transactions = transactions
     }
 }
 
@@ -104,8 +100,8 @@ struct Categories {
 
 struct Coordinates {
     
-    let latitude: Double
-    let longitude: Double
+    let latitude: CLLocationDegrees
+    let longitude: CLLocationDegrees
 }
 
 extension Coordinates {
