@@ -10,5 +10,5 @@ import Foundation
 
 class CellKeys {
     
-    static let businessesCellKey = "BusinessesCell"
+    static let businesses = "BusinessesCell"
 }
