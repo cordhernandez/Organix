@@ -16,6 +16,14 @@
         </array>
     </customFonts>
     <scenes>
+        <!--WelcomeScreens-->
+        <scene sceneID="V3U-Ho-xsM">
+            <objects>
+                <viewControllerPlaceholder storyboardName="WelcomeScreens" id="DTp-yn-IPh" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3ic-Bt-WfW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="239" y="-467"/>
+        </scene>
         <!--Businesses Table View Controller-->
         <scene sceneID="3IU-Ox-jpN">
             <objects>
@@ -122,6 +130,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="gnR-AD-gJj" kind="presentation" identifier="mapViewSegue" id="YWY-cv-30a"/>
+                        <segue destination="DTp-yn-IPh" kind="presentation" identifier="toWelcomeScreens" id="v2h-La-hkC"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NOP-FP-kgF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -174,7 +183,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mDv-rI-mhv">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.30196078430000001" green="0.58823529409999997" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -193,7 +202,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="atG-Rd-V5m">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.14338690042495728" green="0.14352902770042419" blue="0.14340889453887939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.30196078430000001" green="0.58823529409999997" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
