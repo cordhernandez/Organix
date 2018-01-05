@@ -10,5 +10,7 @@ import Foundation
 
 class SegueKeys {
     
-    static let mapView = "mapViewSegue"
+    static let toMapView = "mapViewSegue"
+    static let toWelcomeScreens = "toWelcomeScreens"
+    static let toWelcomeScreenTwo = "welcomeScreenTwoSegue"
 }
