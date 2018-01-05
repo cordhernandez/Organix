@@ -13,6 +13,17 @@ import UIKit
 
 class BusinessesTableViewController: UITableViewController {
     
+    var isFirstTimeUser: Bool {
+        
+        get {
+            return UserPreferences.instance.isFirstTimeUser
+        }
+        
+        set(newValue) {
+            UserPreferences.instance.isFirstTimeUser = newValue
+        }
+    }
+    
     var filteredBusinesses: [Businesses] = []
     var businesses: [Businesses] = []
     var searchController: UISearchController = UISearchController(searchResultsController: nil)
@@ -29,9 +40,17 @@ class BusinessesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadBusinesses()
         setupRefreshControl()
         setupSearchBar()
+        
+        if isFirstTimeUser {
+            
+            goToWelcomeScreens()
+        }
+        else {
+            GlobalLocationManager.instance.initialize()
+            loadBusinesses()
+        }
     }
 }
 
@@ -189,6 +208,21 @@ extension BusinessesTableViewController {
     }
 }
 
+//MARK: Welcome Screen
+extension BusinessesTableViewController: WelcomeScreenDelegate {
+    
+    func goToWelcomeScreens() {
+        
+        performSegue(withIdentifier: SegueKeys.toWelcomeScreenTwo, sender: nil)
+    }
+    
+    func didDismissWelcomeScreens() {
+        
+        isFirstTimeUser = false
+        self.loadBusinesses()
+    }
+}
+
 //MARK: Segues
 extension BusinessesTableViewController {
     
@@ -204,11 +238,17 @@ extension BusinessesTableViewController {
             let businessesMapViewController = destination.topViewController as? BusinessesMapViewController
             businessesMapViewController?.businesses = self.businesses
         }
+        
+        if let destination = segue.destination as? UINavigationController {
+            
+            let welcomeScreen = destination.topViewController as? WelcomeScreenOne
+            welcomeScreen?.delegate = self 
+        }
     }
     
     func goToMapView() {
         
-        performSegue(withIdentifier: SegueKeys.mapView, sender: nil)
+        performSegue(withIdentifier: SegueKeys.toMapView, sender: nil)
     }
 
 }
