@@ -10,7 +10,9 @@ import Foundation
 
 class SegueKeys {
     
-    static let toMapView = "mapViewSegue"
-    static let toWelcomeScreens = "toWelcomeScreens"
-    static let toWelcomeScreenTwo = "welcomeScreenTwoSegue"
+    static let toMapView = "tomapViewSegue"
+    static let toWelcomeScreens = "toWelcomeScreensSegue"
+    static let toWelcomeScreenTwo = "toWelcomeScreenTwoSegue"
+    static let toWelcomeScreenThree = "toWelcomeScreenThreeSegue"
+    static let toWelcomeScreenFour = "toWelcomeScreenFourSegue"
 }
