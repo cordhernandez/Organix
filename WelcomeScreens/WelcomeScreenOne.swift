@@ -18,7 +18,7 @@ class WelcomeScreenOne: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(moveToWelcomeScreenTwo), userInfo: nil, repeats: false)
+        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(goToWelcomeScreenTwo), userInfo: nil, repeats: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,15 +35,14 @@ class WelcomeScreenOne: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        moveToWelcomeScreenTwo()
+        goToWelcomeScreenTwo()
     }
-    
 }
 
 //MARK: - Segues
 extension WelcomeScreenOne {
     
-    @objc func moveToWelcomeScreenTwo() {
+    @objc func goToWelcomeScreenTwo() {
         
         performSegue(withIdentifier: SegueKeys.toWelcomeScreenTwo, sender: nil)
     }
