@@ -26,7 +26,7 @@ class UserPreferences {
         }
     }
     
-    var showVeganBusinsses: Bool {
+    var showVeganBusinesses: Bool {
         
         get {
             return defaultPreferences.object(forKey: Keys.showVeganBusinesses) as? Bool ?? false
