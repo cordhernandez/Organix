@@ -78,6 +78,26 @@ class GlobalLocationManager: NSObject, CLLocationManagerDelegate, MKMapViewDeleg
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
+        switch status {
+            
+        case .restricted:
+            //Make Aroma Note That Access is Restricted
+            break
+            
+        case .denied:
+            //Make Aroma Note that Access is Denied
+            break
+            
+        case .authorizedWhenInUse, .authorizedAlways:
+            //Make Aroma note that Access Granted
+            break
+            
+        default:
+            //Make Aroma note that Acess is Undetermined
+            break
+        }
+        
+        self.currentStatus = status
     }
     
     internal func calculateRegion(for location: CLLocationCoordinate2D) -> MKCoordinateRegion {
