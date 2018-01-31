@@ -129,8 +129,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="gnR-AD-gJj" kind="presentation" identifier="mapViewSegue" id="YWY-cv-30a"/>
-                        <segue destination="DTp-yn-IPh" kind="presentation" identifier="toWelcomeScreens" id="v2h-La-hkC"/>
+                        <segue destination="gnR-AD-gJj" kind="presentation" identifier="tomapViewSegue" id="YWY-cv-30a"/>
+                        <segue destination="DTp-yn-IPh" kind="presentation" identifier="toWelcomeScreensSegue" id="v2h-La-hkC"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NOP-FP-kgF" userLabel="First Responder" sceneMemberID="firstResponder"/>

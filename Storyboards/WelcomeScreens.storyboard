@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -276,11 +277,130 @@
                         <outlet property="nextButton" destination="608-0k-LUa" id="IdQ-46-Se9"/>
                         <outlet property="veganButton" destination="B8O-Jr-MeX" id="l1k-jv-X6y"/>
                         <outlet property="vegetarianButton" destination="CK4-mB-VWV" id="Jq2-pQ-WiP"/>
+                        <segue destination="TLH-XU-GLh" kind="show" identifier="toWelcomeScreenFourSegue" id="fw5-l6-QP9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5bL-bZ-RED" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2132" y="157"/>
+        </scene>
+        <!--Welcome Screen Four-->
+        <scene sceneID="aOM-UH-zZx">
+            <objects>
+                <viewController id="TLH-XU-GLh" customClass="WelcomeScreenFour" customModule="Organix" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QKV-oF-q0h">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="UbD-Ps-rme">
+                                <rect key="frame" x="126.5" y="128" width="122.5" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kmP-aH-Vns">
+                                        <rect key="frame" x="0.0" y="0.0" width="122.5" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="7qh-RR-NOb"/>
+                                        </constraints>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Located at...">
+                                                <attributes>
+                                                    <font key="NSFont" size="22" name="AvenirNext-Medium"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93e-5u-1a6">
+                                        <rect key="frame" x="0.0" y="31" width="122.5" height="19"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Select one">
+                                                <attributes>
+                                                    <font key="NSFont" size="14" name="AvenirNext-Medium"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e6C-Y3-XVm">
+                                <rect key="frame" x="50" y="289" width="108" height="88"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="My Location">
+                                            <attributes>
+                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <font key="NSFont" size="16" name="AvenirNext-Medium"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Env-Qf-TVf">
+                                <rect key="frame" x="216" y="289" width="108" height="88"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="108" id="IG2-OQ-tY6"/>
+                                    <constraint firstAttribute="height" constant="88" id="NlR-jK-zdf"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Zip Code">
+                                            <attributes>
+                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <font key="NSFont" size="16" name="AvenirNext-Medium"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zwI-tI-myI">
+                                <rect key="frame" x="265" y="599" width="80" height="48"/>
+                                <color key="backgroundColor" red="0.30196078430000001" green="0.58823529409999997" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="ozE-c4-can"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Next">
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="16" name="AvenirNext-Medium"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="USX-zi-xhV" firstAttribute="bottom" secondItem="UbD-Ps-rme" secondAttribute="bottom" constant="489" id="6iV-Hu-oXJ"/>
+                            <constraint firstItem="zwI-tI-myI" firstAttribute="leading" secondItem="USX-zi-xhV" secondAttribute="leading" constant="265" id="7Vs-9W-FQ3"/>
+                            <constraint firstItem="Env-Qf-TVf" firstAttribute="centerY" secondItem="QKV-oF-q0h" secondAttribute="centerY" id="8G4-qo-DyZ"/>
+                            <constraint firstItem="e6C-Y3-XVm" firstAttribute="leading" secondItem="USX-zi-xhV" secondAttribute="leading" constant="50" id="AOB-xi-WAj"/>
+                            <constraint firstItem="USX-zi-xhV" firstAttribute="trailing" secondItem="zwI-tI-myI" secondAttribute="trailing" constant="30" id="Efc-rM-8ms"/>
+                            <constraint firstItem="USX-zi-xhV" firstAttribute="trailing" secondItem="Env-Qf-TVf" secondAttribute="trailing" constant="51" id="ObR-5K-H5F"/>
+                            <constraint firstItem="e6C-Y3-XVm" firstAttribute="top" secondItem="Env-Qf-TVf" secondAttribute="top" id="Ox1-NB-x2w"/>
+                            <constraint firstItem="e6C-Y3-XVm" firstAttribute="firstBaseline" secondItem="Env-Qf-TVf" secondAttribute="baseline" id="UiH-g6-Yfz"/>
+                            <constraint firstItem="Env-Qf-TVf" firstAttribute="leading" secondItem="e6C-Y3-XVm" secondAttribute="trailing" constant="58" id="baL-Su-JEc"/>
+                            <constraint firstItem="UbD-Ps-rme" firstAttribute="top" secondItem="USX-zi-xhV" secondAttribute="top" constant="64" id="kfo-PD-PvG"/>
+                            <constraint firstItem="UbD-Ps-rme" firstAttribute="centerX" secondItem="QKV-oF-q0h" secondAttribute="centerX" id="vaW-bL-2QE"/>
+                            <constraint firstAttribute="bottom" secondItem="zwI-tI-myI" secondAttribute="bottom" constant="20" symbolic="YES" id="wbf-O7-YBn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="USX-zi-xhV"/>
+                    </view>
+                    <connections>
+                        <outlet property="myLocationButton" destination="e6C-Y3-XVm" id="igb-wi-fnD"/>
+                        <outlet property="nextButton" destination="zwI-tI-myI" id="pm8-xg-5UT"/>
+                        <outlet property="zipCodeButton" destination="Env-Qf-TVf" id="kx3-7R-3Fr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1dh-ZJ-mYG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3052" y="156.97151424287858"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GuX-zm-EUD">
