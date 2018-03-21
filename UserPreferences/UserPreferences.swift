@@ -106,7 +106,7 @@ class UserPreferences {
     var isFirstTimeUser: Bool {
         
         get {
-            return defaultPreferences.object(forKey: Keys.isFirstTimeUser) as? Bool ?? false
+            return defaultPreferences.object(forKey: Keys.isFirstTimeUser) as? Bool ?? true
         }
         
         set (value) {
