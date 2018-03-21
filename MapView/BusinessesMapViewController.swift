@@ -24,7 +24,7 @@ class BusinessesMapViewController: UIViewController, MKMapViewDelegate, CLLocati
     var distance = 0.0
     
     var showVeganBusinesses: Bool {
-        return UserPreferences.instance.showVeganBusinsses
+        return UserPreferences.instance.showVeganBusinesses
     }
     
     var showVegetarianBusinesses: Bool {
@@ -96,11 +96,11 @@ internal extension BusinessesMapViewController {
             
             GlobalLocationManager.instance.requestLocation(callback: self.loadBusinessesAtCoordinate)
         }
-        else if useZipCode, zipCode.notEmpty {
+        else if useZipCode, zipCode.isNotEmpty {
             
             loadBusinessesAtZipCode(zipCode: zipCode)
         }
-        else if useCity, city.notEmpty {
+        else if useCity, city.isNotEmpty {
             
             loadBusinessesAtCity(city: city)
         }
