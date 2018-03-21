@@ -65,6 +65,7 @@ extension UIViewController {
 //MARK: - WelcomeScreenFour Alert View
 extension WelcomeScreenFour {
     
+    //GPS
     func createAlertToRequestGPS() -> UIAlertController {
         
         let title = "Enable GPS"
@@ -84,6 +85,7 @@ extension WelcomeScreenFour {
         return alert
     }
     
+    //Zip Code
     func createAlertToRequestZipCode() -> UIAlertController {
         
         let title = "Enter Zip Code"
@@ -110,7 +112,7 @@ extension WelcomeScreenFour {
         
         let ok = UIAlertAction(title: "OK", style: .default) { _ in
             
-            guard let zipCode = alert.textFields?.first?.text, zipCode.notEmpty else {
+            guard let zipCode = alert.textFields?.first?.text, zipCode.isNotEmpty else {
                 self.showAlertWithError(message: "Zip Code cannot be empty")
                 return
             }
@@ -129,7 +131,59 @@ extension WelcomeScreenFour {
             
             self.useZipCode = true
             self.zipCode = zipCode
-            //self.updateButtons()
+            self.updateButtons()
+        }
+        
+        return ok
+    }
+    
+    //City
+    func createAlertToRequestCity() -> UIAlertController {
+        
+        let title = "Enter a City"
+        let message = "Enter a city to find Vegan and Vegetarian restaurants in that city"
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        let ok = createCityOkButton(for: alert)
+        
+        alert.addActions(cancel, ok)
+        
+        alert.addTextField { (textField) in
+            
+            textField.keyboardType = .alphabet
+            textField.becomeFirstResponder()
+        }
+        
+        return alert
+    }
+    
+    func createCityOkButton(for alert: UIAlertController) -> UIAlertAction {
+        
+        let ok = UIAlertAction(title: "OK", style: .default) {_ in
+            
+            guard let city = alert.textFields?.first?.text, city.isNotEmpty else {
+                self.showAlertWithError(message: "City cannot be empty")
+                return
+            }
+            
+            let valid = self.isValidCity(city)
+            
+            guard valid.isValid else {
+                
+                let message = valid.errorMessage
+                
+                LOG.warn("Invalid city: \(message)")
+                self.showAlertWithError(message: message)
+                
+                return
+            }
+            
+            self.useCity = true
+            self.city = city
+            self.updateButtons()
         }
         
         return ok
