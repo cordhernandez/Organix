@@ -44,7 +44,7 @@ class BusinessesTableViewController: UITableViewController {
         setupSearchBar()
         
         if isFirstTimeUser {
-            
+        
             goToWelcomeScreens()
         }
         else {
@@ -141,18 +141,25 @@ extension BusinessesTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         
         if searchController.searchBar.text == "" {
-            filteredBusinesses = businesses
+            
+            main.addOperation {
+                
+                self.filteredBusinesses = self.businesses
+                self.tableView.reloadData()
+            }
+            
+            self.tableView.reloadData()
         }
         else {
             
             guard let modifiedText = searchController.searchBar.text?.replacingOccurrences(of: " ", with: "") else { return }
             print("THIS IS THE MODIFIED TEXT: \(modifiedText)")
-            loadBusinessesFrom(theCity: modifiedText)
-        }
-        
-        self.main.addOperation {
             
-            self.tableView.reloadData()
+            main.addOperation {
+                
+                self.loadBusinessesFrom(theCity: modifiedText)
+                self.tableView.reloadData()
+            }
         }
     }
 }
@@ -213,7 +220,7 @@ extension BusinessesTableViewController: WelcomeScreenDelegate {
     
     func goToWelcomeScreens() {
         
-        performSegue(withIdentifier: SegueKeys.toWelcomeScreenTwo, sender: nil)
+        performSegue(withIdentifier: SegueKeys.toWelcomeScreens, sender: nil)
     }
     
     func didDismissWelcomeScreens() {
@@ -246,40 +253,10 @@ extension BusinessesTableViewController {
         }
     }
     
+    //Map View
     func goToMapView() {
         
         performSegue(withIdentifier: SegueKeys.toMapView, sender: nil)
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
