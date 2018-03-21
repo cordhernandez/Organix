@@ -25,6 +25,12 @@ class WelcomeScreenTwo: UIViewController {
         LOG.info("User tapped on screen, moving to welcome screen 3.")
         goToWelcomeScreenThree()
     }
+    
+    @IBAction func letsGetStartedButtonTapped(_ sender: Any) {
+        
+        LOG.info("User tapped on start button, moving to welcome screen 3.")
+        goToWelcomeScreenThree()
+    }
 }
 
 //MARK: - Segues
