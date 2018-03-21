@@ -10,7 +10,7 @@ import Foundation
 
 extension String {
     
-    var notEmpty: Bool {
+    var isNotEmpty: Bool {
         return !isEmpty
     }
 }
